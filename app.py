@@ -7,10 +7,10 @@ import psycopg2
 app = Flask(__name__)
 
 conn = psycopg2.connect(
-    dbname="Passwords",
+    dbname="postgres",
     user="postgres",
-    password="admin",
-    host="localhost",
+    password="admin123",
+    host="passwords.chwbwjv5imju.eu-north-1.rds.amazonaws.com",
     port="5432"
 )
 
@@ -37,6 +37,18 @@ def generate():
             conn.commit()
 
             return render_template('password.html', password=password)
+
+@app.route('/all_passwords')
+def all_passwords():
+    cur.execute("SELECT passvalues FROM passwords")
+    passwords = cur.fetchall()
+    return render_template('all_passwords.html', passwords=passwords)
+
+@app.route('/delete', methods=['POST'])
+def delete_all_passwords():
+    cur.execute("DELETE FROM passwords")
+    conn.commit()
+    return 'OK'
 
 if __name__ == '__main__':
     app.run()
