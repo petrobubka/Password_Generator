@@ -4,7 +4,7 @@ import string
 import random
 import psycopg2
 
-app = Flask(__name__)
+application = Flask(__name__)
 
 conn = psycopg2.connect(
     dbname="postgres",
@@ -16,12 +16,12 @@ conn = psycopg2.connect(
 
 cur = conn.cursor()
 
-@app.route('/')
+@application.route('/')
 def index():
    return render_template('index.html')
 
 
-@app.route('/password', methods=['POST', 'GET'])
+@application.route('/password', methods=['POST', 'GET'])
 def generate():
         if request.method == 'POST':
             inp = int(request.form['nm'])
@@ -38,21 +38,20 @@ def generate():
 
             return render_template('password.html', password=password)
 
-@app.route('/all_passwords')
+@application.route('/all_passwords')
 def all_passwords():
     cur.execute("SELECT passvalues FROM passwords")
     passwords = cur.fetchall()
     return render_template('all_passwords.html', passwords=passwords)
 
-@app.route('/delete', methods=['POST'])
+@application.route('/delete', methods=['POST'])
 def delete_all_passwords():
     cur.execute("DELETE FROM passwords")
     conn.commit()
     return 'OK'
 
 if __name__ == "__main__":
-    app.debug = True
-    app.run()
-
+    application.debug = True
+    application.run()
 
 
