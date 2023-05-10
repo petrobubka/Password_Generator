@@ -42,6 +42,7 @@ def generate():
 def all_passwords():
     cur.execute("SELECT passvalues FROM passwords")
     passwords = cur.fetchall()
+    passwords = list(map(lambda x: str(x)[2:-3], passwords))
     return render_template('all_passwords.html', passwords=passwords)
 
 @application.route('/delete', methods=['POST'])
