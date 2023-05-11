@@ -5,14 +5,15 @@ body {
 }
 
 h3 {
+    text-align: center;
     color: #bbdefb;
 }
 
 li {
+
   font-size: 18px;
   line-height: 1.5;
   margin-bottom: 20px;
-  text-transform: uppercase;
   position: relative;
   transition: all 0.2s ease-in-out;
   cursor: pointer;
@@ -25,7 +26,7 @@ li:hover {
 li::before {
   content: "";
   position: absolute;
-  left: -10px;
+  left: -20px;
   top: 50%;
   transform: translateY(-50%);
   width: 8px;
@@ -45,6 +46,16 @@ li:hover::before {
 form {
     margin: 0 auto;
     max-width: 400px;
+    padding: 20px;
+    background-color: #424242;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+}
+
+div.forma{
+    word-wrap: break-word;
+    margin: 0 auto;
+    max-width: 60%;
     padding: 20px;
     background-color: #424242;
     border-radius: 10px;
@@ -97,9 +108,13 @@ button {
     margin: auto;
     text-transform: uppercase;
 }
-div{
+div.allpases{
     display: flex;
     align-items: center;}
+
+div.genpass{
+    word-wrap: break-word;
+}
 
 button.btn-container {
   text-align: center;
@@ -107,4 +122,8 @@ button.btn-container {
 
 input[type="submit"]:hover {
     background-color: #fff;
+}
+
+ul{
+    list-style-type: none;
 }
